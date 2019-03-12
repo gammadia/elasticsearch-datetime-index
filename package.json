@@ -1,0 +1,17 @@
+{
+  "name": "elasticsearch-datetime-index",
+  "version": "1.0.0",
+  "description": "Use eleasticsearch with datetime in index names to simulate TTL",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.gammadia.ch:7999/nodmod/elasticsearch-datetime-index.git"
+  },
+  "engines": {
+    "node": ">=11.10.1"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "elasticsearch": "^15.4.1"
+  }
+}

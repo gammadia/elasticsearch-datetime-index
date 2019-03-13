@@ -40,7 +40,7 @@ exports.init = async function(host, app, template, datadogKey) {
                 await es.indices.putTemplate({name: indexPrefix, body: template});
             }
         } catch (err) {
-            if (undefined !== datadogApiKey) {
+            if (!!datadogApiKey) {
                 let req = https.request(`https://api.datadoghq.com/api/v1/events?api_key=${datadogApiKey}`, datadogOptions);
                 req.write(JSON.stringify({
                     title: 'Elasticsearch problem',
@@ -78,7 +78,7 @@ exports.log = async function (log) {
             type: 'log'
         })
     } catch (err) {
-        if (undefined !== datadogApiKey) {
+        if (!!datadogApiKey) {
             let req = https.request(`https://api.datadoghq.com/api/v1/events?api_key=${datadogApiKey}`, datadogOptions);
             req.write(JSON.stringify({
                 title: 'Elasticsearch problem',

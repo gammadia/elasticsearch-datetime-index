@@ -1,6 +1,6 @@
 {
   "name": "elasticsearch-datetime-index",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Use eleasticsearch with datetime in index names to simulate TTL",
   "main": "index.js",
   "repository": {
@@ -11,6 +11,7 @@
     "node": ">=11.10.1"
   },
   "license": "UNLICENSED",
+  "private": true,
   "dependencies": {
     "elasticsearch": "^15.4.1"
   }

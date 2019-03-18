@@ -13,6 +13,8 @@ var es = null,
     https = require('https');
     elasticsearch = require('elasticsearch');
 
+    const datadogEntryPoint = 'https://api.datadoghq.com/api/v1/';
+
 /**
  * Initialize the connection to an elasticsearch server.
  * @param host The elasticsearch server IP/URL
@@ -41,7 +43,7 @@ exports.init = async function(host, app, template, datadogKey) {
             }
         } catch (err) {
             if (!!datadogApiKey) {
-                let req = https.request(`https://api.datadoghq.com/api/v1/events?api_key=${datadogApiKey}`, datadogOptions);
+                let req = https.request(`${datadogEntryPoint}events?api_key=${datadogApiKey}`, datadogOptions);
                 req.write(JSON.stringify({
                     title: 'Elasticsearch problem',
                     text: `Unable to find or create template ${indexPrefix}`,
@@ -79,7 +81,7 @@ exports.log = async function (log) {
         })
     } catch (err) {
         if (!!datadogApiKey) {
-            let req = https.request(`https://api.datadoghq.com/api/v1/events?api_key=${datadogApiKey}`, datadogOptions);
+            let req = https.request(`${datadogEntryPoint}events?api_key=${datadogApiKey}`, datadogOptions);
             req.write(JSON.stringify({
                 title: 'Elasticsearch problem',
                 text: `Unable to upload log to elasticsearch server`,

@@ -46,7 +46,7 @@ exports.init = async function(host, app, template, datadogKey) {
                 let req = https.request(`${datadogEntryPoint}events?api_key=${datadogApiKey}`, datadogOptions);
                 req.write(JSON.stringify({
                     title: 'Elasticsearch problem',
-                    text: `Unable to find or create template ${indexPrefix}`,
+                    text: `Unable to find or create template ${indexPrefix} (${err})`,
                     tags: [`application:${appName}`, 'application:elasticsearch'],
                     alert_type: 'error'
                 }));
@@ -84,7 +84,7 @@ exports.log = async function (log) {
             let req = https.request(`${datadogEntryPoint}events?api_key=${datadogApiKey}`, datadogOptions);
             req.write(JSON.stringify({
                 title: 'Elasticsearch problem',
-                text: `Unable to upload log to elasticsearch server`,
+                text: `Unable to upload log to elasticsearch server (${err})`,
                 tags: [`application:${appName}`, 'application:elasticsearch'],
                 alert_type: 'error'
             }));
